@@ -1,10 +1,13 @@
 import React  from 'react';
-import "./App.css";
+
 import { useState } from 'react';
 import Card from './Components/Elcard';
 import fetchData from './services/api';
 import InitialData from './Components/init/Initial.data';
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+
+
+import HandleForecast from './Components/Horas';
 
 //FAZER PREVISÕES  FUTURAS
 
@@ -14,12 +17,17 @@ export default function App() {
 
  
   const [procurar, setProcurar] = useState("");
+
   const [data , setData] = useState(InitialData);
-  const [scrollX, setScrollX] = useState(-400)
+  const [scrollX, setScrollX] = useState(0);
+ 
+  
   
 
 
-  console.log(data.forecast)
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,18 +38,40 @@ export default function App() {
    });
   }
 
+  
   const handleLeftArrow = () =>{
-   
+    let x = scrollX + 150
+    if(x > 1800) {
+      x = 1800;
+  }
+    setScrollX(x);
 }
+
+
 
 const handleRightArrow = () =>{
+  
+  let x = scrollX - 150
+
+  if(x >= 0){
+    x = -150
+    console.log(scrollX)
+   }if(scrollX === -1800){
+    x = -1800;
+   }
+  
+  setScrollX(x)
+  }
+
+
    
-}
 
 
+  
+ 
 
   return (
-   <div className='flex flex-col w-full h-screen items-center sm:justify-center p-4' >
+   <div className='bg-gradient-to-r from-sky-500 to-indigo-500 flex flex-col w-full h-screen items-center sm:justify-center p-4 overflow-hidden' >
 
     <form onSubmit={ handleSubmit } className='fixed bottom-0 w-full flex p-4 sm:relative'>
       <input 
@@ -59,16 +89,22 @@ const handleRightArrow = () =>{
     </form>
  
     <Card data={data}/>
-
-    <div className='flex m-4'>
-      <MdNavigateBefore className='mt-5' onClick={handleLeftArrow} style={{fontSize : 50}} />
-      <div className='flex w-xs'>
-   
-   
-     </div>  
-      <MdNavigateNext className='mt-5' onClick={handleRightArrow} style={{fontSize : 50}} />
+    <div className='flex overflow-hidden'>
+    <MdNavigateBefore className='mt-5' onClick={handleLeftArrow} style={{fontSize : 50}} />
+    <MdNavigateNext className='mt-5' onClick={handleRightArrow} style={{fontSize : 50}} />
+    </div>
+    <div className='flex m-4 '>
+            <div className='flex ease-in duration-300 overflow-hidden '  style={{
+            marginLeft: scrollX,}}>
+            <HandleForecast data={data.forecast.forecastday[0]?.hour}/>
+            </div>  
     </div>
 
-   </div>
+    
+
+    </div>
+
+
+  
   )
 }
