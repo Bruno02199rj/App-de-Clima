@@ -12,7 +12,7 @@ const InitialData = {
      
         condition:{
             text: '-',
-            icon: '//cdn.weatherapi.com/weather/64x64/night/113.png'
+            icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
         }
     }
 }

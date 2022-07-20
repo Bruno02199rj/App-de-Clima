@@ -8,4 +8,3 @@ test('renders learn react link', () => {
 });
 
 
-let someHours = data.forecast.forecastday[0].hour;
