@@ -1,10 +1,14 @@
 import React  from 'react';
+import { FaSearch } from 'react-icons/fa';
+import { WiHumidity } from 'react-icons/wi'
 
 import { useState } from 'react';
 import Card from './Components/Elcard';
 import fetchData from './services/api';
 import InitialData from './Components/init/Initial.data';
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import {IoIosArrowUp} from 'react-icons/io'
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md"
+import nature from './nature-3082832.jpg'
 
 
 import HandleForecast from './Components/Horas';
@@ -81,44 +85,57 @@ const handleRightArrow = () =>{
  
   
   return (
-    <div className='bg-gradient-to-r from-sky-500 to-indigo-500 flex flex-col w-full h-screen items-center sm:justify-center p-4 overflow-hidden' >
+   
+    <>
+  <div className='h-full w-full relative flex  
+                '>
+
+
+                  
+                </div>
+     <img className=' w-full absolute h-full  ' src={nature} alt="cam"/>
+
+   
+
+
+
+            <form onSubmit={ handleSubmit } className=' mt-72   justify-center  w-full  flex p-4 relative'>
+    
+    <div className=' h-full bg-opacity-75 rounded-lg  bg-[#858585]  w-max  flex  w-full '>
+    <input  type='text' 
+      placeholder='cidade'
+      className=' font-bold 
+      text-white bg-opacity-75 bg-transparent p-3 rounded-lg outline-none w-52 ' 
+      value={procurar}
+      onChange={(e) => setProcurar(e.target.value)} >
+      
+      </input>
+      <button 
+      className='opacity-75  mr-2 rounded-lg  text-black  font-bold'
+      type='submit'>
+        <FaSearch className='text-white'/>
+       
+      </button> 
      
 
-    <form onSubmit={ handleSubmit } className='fixed bottom-0 w-full flex p-4 sm:relative'>
-      <input 
-      type='text' 
-      placeholder='cidade'
-      className='p-3 rounded-lg outline-none w-full flex-1' 
-      value={procurar}
-      onChange={(e) => setProcurar(e.target.value)}
-      />
-      <button 
-      className='bg-blue-600 p-3 rounded-lg ml-3 text-white font-bold'
-      type='submit'>
-        Pesquisar
-      </button>
-    </form>
+    </div>
  
-    <Card data={data}/>
+    </form>
+    <div className=' relative mt-32    h-max flex justify-center w-full '> 
+     
+  
+ 
+ <Card className='' data={data} />
+
+
+
+ 
+
+     </div>
+  
    
-      
-    <div className='pb-12 flex overflow-hidden'>
-    <MdNavigateBefore  onClick={handleLeftArrow} style={{fontSize : 50}} />
-    <MdNavigateNext   onClick={handleRightArrow} style={{fontSize : 50}} />
-    </div>
-    <div className='flex m-4  '>
-            <div id='ss' className='flex ease-in duration-300 overflow-hidden  '  style={{
-              marginLeft: scrollX,}}>
-      
-            <HandleForecast data={data.forecast.forecastday[0]?.hour}/>
-            
-            </div>  
-    </div>
 
-    
-
-    </div>
-
+    </>
 
   
   )
