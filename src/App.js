@@ -2,13 +2,15 @@ import React  from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { WiHumidity } from 'react-icons/wi'
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Card from './Components/Elcard';
 import fetchData from './services/api';
 import InitialData from './Components/init/Initial.data';
 import {IoIosArrowUp} from 'react-icons/io'
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md"
 import nature from './nature-3082832.jpg'
+import palace from './palace-530055.jpg'
+import ponte from './george-washington-bridge-2098351.jpg'
 
 
 import HandleForecast from './Components/Horas';
@@ -19,22 +21,26 @@ import { list } from 'postcss';
 
 export default function App() {
 
-
-
+useEffect(() => {
+  const random = Math.floor(image.length* Math.random());
+  setAleatorio(random)
+}, []);
  
   const [procurar, setProcurar] = useState("");
-
+  const [aleatorio,setAleatorio] = useState()
   const [data , setData] = useState(InitialData);
   const [scrollX, setScrollX] = useState(0);
- 
- 
+  const [image,setImage] = useState([
+    palace,nature,ponte
+  ]);
+
+
+
   let elda = data.forecast.forecastday[0]?.hour.length;
+  
+ 
 
  
- console.log(elda)
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
    fetchData(procurar).then((res)=>{
@@ -58,6 +64,7 @@ export default function App() {
 
 }
 
+console.log(data.location.localtime)
 
 
 const handleRightArrow = () =>{
@@ -87,53 +94,55 @@ const handleRightArrow = () =>{
   return (
    
     <>
-  <div className='h-full w-full relative flex  
-                '>
-
-
-                  
-                </div>
-     <img className=' w-full absolute h-full  ' src={nature} alt="cam"/>
-
-   
-
-
-
-            <form onSubmit={ handleSubmit } className=' mt-72   justify-center  w-full  flex p-4 relative'>
+ 
     
-    <div className=' h-full bg-opacity-75 rounded-lg  bg-[#858585]  w-max  flex  w-full '>
-    <input  type='text' 
-      placeholder='cidade'
-      className=' font-bold 
-      text-white bg-opacity-75 bg-transparent p-3 rounded-lg outline-none w-52 ' 
-      value={procurar}
-      onChange={(e) => setProcurar(e.target.value)} >
+     <img className=' absolute bg-contain bg-center h-full  w-full  ' src={image[aleatorio]} alt="cam"/>
+    <div className='h-screen w-full absolute  bg-gradient-to-b from-transparent to-black'></div>
+     <form onSubmit={ handleSubmit } className='  relative  flex justify-center  w-full  p-4 '>
+          
+          <div className='mt-8   bg-opacity-75 rounded-lg   bg-[#858585]  w-max  flex  w-full '>
+          
+          <input  type='text' 
+            placeholder='pesquisar'
+            className=' font-bold 
+            text-white bg-opacity-100 bg-transparent p-3 rounded-lg outline-none w-52 ' 
+            value={procurar}
+            onChange={(e) => setProcurar(e.target.value)} >
+            
+            </input>
+            <button 
+            className='opacity-100 mr-2 rounded-lg  text-black  font-bold'
+            type='submit'>
+              <FaSearch className='text-white'/>
+             
+            </button> 
+           
       
-      </input>
-      <button 
-      className='opacity-75  mr-2 rounded-lg  text-black  font-bold'
-      type='submit'>
-        <FaSearch className='text-white'/>
+          </div>
        
-      </button> 
-     
+          </form>
+          <div className=' relative  h-full bg-gradient-to-b from-cyan-500 to-blue-500    h-max  w-full '> 
+           
+        
+       
+      
+      
+      
+      
+       
+      
+           </div>
+        
+        
+      
+        
+      
+           <div class="pt-[23rem]    relative w-full ">
+      
+      <Card data={data}/>
+        </div>
 
-    </div>
- 
-    </form>
-    <div className=' relative mt-32    h-max flex justify-center w-full '> 
-     
-  
- 
- <Card className='' data={data} />
 
-
-
- 
-
-     </div>
-  
-   
 
     </>
 
