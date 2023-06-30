@@ -24,6 +24,7 @@ export default function App() {
 useEffect(() => {
   const random = Math.floor(image.length* Math.random());
   setAleatorio(random)
+  
 }, []);
  
   const [procurar, setProcurar] = useState("");
@@ -37,16 +38,16 @@ useEffect(() => {
 
 
   let elda = data.forecast.forecastday[0]?.hour.length;
-  
+
  
 
  
   const handleSubmit = (e) => {
+
     e.preventDefault();
    fetchData(procurar).then((res)=>{
  
    setData(res)
- 
    });
   }
 
@@ -96,11 +97,11 @@ const handleRightArrow = () =>{
     <>
  
     
-     <img className=' absolute bg-contain bg-center h-full  w-full  ' src={image[aleatorio]} alt="cam"/>
+     <img className=' absolute bg-contain aling-middle bg-center h-full  w-full  ' src={image[aleatorio]} alt="cam"/>
     <div className='h-screen w-full absolute  bg-gradient-to-b from-transparent to-black'></div>
      <form onSubmit={ handleSubmit } className='  relative  flex justify-center  w-full  p-4 '>
           
-          <div className='mt-8   bg-opacity-75 rounded-lg   bg-[#858585]  w-max  flex  w-full '>
+          <div className='mt-14   bg-opacity-75 rounded-lg   bg-[#858585]  w-max  flex  w-full '>
           
           <input  type='text' 
             placeholder='pesquisar'
@@ -137,7 +138,7 @@ const handleRightArrow = () =>{
       
         
       
-           <div class="pt-[23rem]    relative w-full ">
+           <div class="pt-[23rem]   flex  relative w-full ">
       
       <Card data={data}/>
         </div>

@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { WiHumidity } from 'react-icons/wi';
 import {CiTempHigh} from 'react-icons/ci'
+import { useEffect } from 'react';
 
 
 const Card = ({data}) => {
 
-    
+   const [count,setCount] = useState(0)     
+    const [localTime,setLocalTime] = useState(data.location.localTime)
+   
+
+    console.log(localTime)
+    console.log(count)  
+
     return (
-        <div className=' relative items-stretch h-full w-full  flex     '>
-          
+        <div className=' relative items-stretch justify-center scale-75 md:scale-100  md:flex md:justify-start h-full w-full  flex     '>
+            <div onClick={()=>setCount(count + 1)} className='w-12 h-32 bg-red-900'><p className='text-white'>{count}</p></div>
             <CiTempHigh className='h-12   self-center w-12 text-white'/>
-            <div> <span className='text-gray-50 text-8xl'>{data.current.temp_c}</span>
+            <div> <span className='text-gray-50  text-8xl'>{data.current.temp_c}</span>
             <span className=' text-gray-50 text-2xl mt-2'>°C</span></div>
            
         <div className='mt-4 px-4  self-center'>
             <span className=' items-center block text-xl font-bold text-white'>{data.location.region}</span> 
             <span className=' text-white text-sm font-medium'>{data.location.name}</span>
-            <span className='text-white block'>{data.location.localtime}</span>
+            
+            <span className=' w-max text-white block'>{data.location.localtime}</span>
+            <span className='text-white'>{data.current.wind_kph}</span>
         </div>
 
         <div className='font-bold text-slate-700 flex  mb-2'>
