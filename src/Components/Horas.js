@@ -8,12 +8,8 @@ const HandleForecast = ({data}) =>{
 
   return(
     <>
-    {data?.map((t)=>{
-       console.log(data)
-      return (
-        <div >
-    
-      </div>);
+     {data?.map((t)=>{
+  console.log(t)
            
     })}
     
@@ -22,5 +18,9 @@ const HandleForecast = ({data}) =>{
   );
  
 }
+    
+    
+    
+
 export default HandleForecast;
  
