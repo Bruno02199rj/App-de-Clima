@@ -2,7 +2,7 @@ import React  from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { WiHumidity } from 'react-icons/wi'
 import {AiOutlineArrowUp} from 'react-icons/ai'
-import ReactSimplyCarouselExample from './Components/carrosel';
+import  { Slider } from './Components/Slider';
 
 
 
@@ -20,8 +20,7 @@ import  mail from './o-email.png'
 import whatsapp from './icons8-whatsapp-50.png'
 import github from'./icons8-github-26.png'
 
-import HandleForecast from './Components/Horas';
-import { list } from 'postcss';
+
 
 //FAZER PREVISÕES  FUTURAS
 
@@ -37,7 +36,7 @@ useEffect(() => {
   const [procurar, setProcurar] = useState("");
   const [aleatorio,setAleatorio] = useState()
   const [data , setData] = useState(InitialData);
-  const [show, setShow] = useState();
+  const [show, setShow] = useState(false);
 
   const [image,setImage] = useState([
     palace,nature,ponte
@@ -70,10 +69,10 @@ useEffect(() => {
  
     
      <img className=' absolute bg-contain aling-middle bg-center h-full  w-full  ' src={image[aleatorio]} alt="cam"/>
-    <div className='h-screen w-full absolute  bg-gradient-to-b from-transparent to-black'></div>
-     <form onSubmit={ handleSubmit } className='  relative  h-full  flex justify-center  w-full  pt-52 '>
-          
-          <div className='mt-14   bg-opacity-50 rounded-lg   bg-[#858585]  w-max  flex  w-full '>
+    <div className='h-full w-full absolute  bg-gradient-to-b from-transparent to-black'></div>
+     <form onSubmit={ handleSubmit } className='  relative  h-full  flex justify-center  w-full  pt-32 '>
+   
+          <div className='mt-4   bg-opacity-50 rounded-lg   bg-[#858585]  w-max  flex  w-full '>
           
           <input  type='text' 
             placeholder='pesquisar'
@@ -107,11 +106,11 @@ useEffect(() => {
            </div>
         
            <div class="pt-[8rem]  flex justify-center relative w-full ">
-           <AiOutlineArrowUp onClick={()=>setShow(true)} className='text-white justify-center h-8 w-24'/>  
+           <AiOutlineArrowUp onClick={()=>setShow(prevShow => !prevShow)} className='text-white justify-center h-8 w-24'/>  
         
-          
+           
            </div>
-    {show?<div className='h-full mt-12 relative w-full justify-center flex'>  <ReactSimplyCarouselExample   data={data}/></div>:
+    {show? <Slider data={data}/> :
     
     
     <Card data={data}/>
@@ -119,7 +118,7 @@ useEffect(() => {
            <div class="  md:flex md:justify-center relative w-full ">
           
           
-            <div className='h-max flex  justify-center md:flex-row-reverse w-full   md:w-52 mt-8 mt-12'>
+            <div className='h-max flex  justify-center md:flex-row-reverse w-full   md:w-52 mt-24 mt-12'>
            
            <img src={mail} className=' h-8 w-8 '/>
            <img src={whatsapp} className='bg-transparent mx-4 h-8 w-8 '/>
