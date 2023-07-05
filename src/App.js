@@ -19,7 +19,7 @@ import ponte from './george-washington-bridge-2098351.jpg'
 import  mail from './o-email.png'
 import whatsapp from './icons8-whatsapp-50.png'
 import github from'./icons8-github-26.png'
-
+import { Animate } from './Components/animation';
 
 
 //FAZER PREVISÕES  FUTURAS
@@ -70,8 +70,9 @@ useEffect(() => {
     
      <img className=' absolute bg-contain aling-middle bg-center h-full  w-full  ' src={image[aleatorio]} alt="cam"/>
     <div className='h-full w-full absolute  bg-gradient-to-b from-transparent to-black'></div>
-     <form onSubmit={ handleSubmit } className='  relative  h-full  flex justify-center  w-full  pt-32 '>
-   
+     <form onSubmit={ handleSubmit } className='  relative  h-full  flex justify-center  w-full  pt-24 '>
+
+
           <div className='mt-4   bg-opacity-50 rounded-lg   bg-[#858585]  w-max  flex  w-full '>
           
           <input  type='text' 
@@ -106,23 +107,24 @@ useEffect(() => {
            </div>
         
            <div class="pt-[8rem]  flex justify-center relative w-full ">
-           <AiOutlineArrowUp onClick={()=>setShow(prevShow => !prevShow)} className='text-white justify-center h-8 w-24'/>  
-        
-           
+           <AiOutlineArrowUp onClick={()=>setShow(prevShow => !prevShow)} className='hover:scale-125 text-white justify-center h-8 w-24'/>  
+       
            </div>
-    {show? <Slider data={data}/> :
+         
+           
+    {show? <div>  <p className='animate-pulse text-gray-400 text-sm flex justify-center relative w-full relative'> Arraste para o lado  </p><Animate data={data}/></div> :
     
     
-    <Card data={data}/>
+    <Card  data={data}/>
     }
            <div class="  md:flex md:justify-center relative w-full ">
           
           
             <div className='h-max flex  justify-center md:flex-row-reverse w-full   md:w-52 mt-24 mt-12'>
            
-           <img src={mail} className=' h-8 w-8 '/>
-           <img src={whatsapp} className='bg-transparent mx-4 h-8 w-8 '/>
-           <img src={github} className='bg-transparent h-8 w-8'/>
+           <img src={mail} className=' h-5 w-5 '/>
+           <img src={whatsapp} className='bg-transparent mx-4 h-5 w-5 '/>
+           <img src={github} className='bg-transparent h-5 w-5'/>
             </div>
            </div>
 
