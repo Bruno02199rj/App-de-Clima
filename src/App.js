@@ -68,9 +68,9 @@ useEffect(() => {
     <>
  
     
-     <img className=' absolute bg-contain aling-middle bg-center h-full  w-full  ' src={image[aleatorio]} alt="cam"/>
+     <img className=' absolute  aling-middle bg- h-full  w-full  ' src={image[aleatorio]} alt="cam"/>
     <div className='h-full w-full absolute  bg-gradient-to-b from-transparent to-black'></div>
-     <form onSubmit={ handleSubmit } className='  relative  h-full  flex justify-center  w-full  pt-24 '>
+     <form onSubmit={ handleSubmit } className='  relative  h-full  flex justify-center  w-full  pt-[8REM] '>
 
 
           <div className='mt-4   bg-opacity-50 rounded-lg   bg-[#858585]  w-max  flex  w-full '>

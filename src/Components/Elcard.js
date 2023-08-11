@@ -12,7 +12,7 @@ const Card = ({data}) => {
     return (
           
        
-        <div className='  relative items-stretch justify-center scale-75 md:scale-100      flex lg:justify-start h-full w-full  flex     '>
+        <div className='  relative items-stretch justify-center scale-75 md:scale-100      flex h-full w-full  flex     '>
             <CiTempHigh className='h-12   self-center w-12 text-white'/>
             <div> <span className='text-gray-50  text-8xl'>{data.current.temp_c}</span>
             <span className=' text-gray-50 text-2xl mt-2'>°C</span></div>
